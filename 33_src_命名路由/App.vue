@@ -12,17 +12,12 @@
 
           <!-- Vue中借助router-link标签实现路由的切换 -->
           <router-link
-            replace
             class="list-group-item"
             active-class="active"
             :to="{ name: 'guanyu' }"
             >About</router-link
           >
-          <router-link
-            replace
-            class="list-group-item"
-            active-class="active"
-            to="/home"
+          <router-link class="list-group-item" active-class="active" to="/home"
             >Home</router-link
           >
         </div>

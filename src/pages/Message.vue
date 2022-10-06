@@ -2,20 +2,22 @@
   <div>
     <ul>
       <li v-for="m in messageList" :key="m.id">
-        <!-- 跳转路由并携带query参数, to的字符串写法 -->
-        <!-- <router-link :to="`/home/message/detail?id=${m.id}&title=${m.title}`">
+        <!-- 跳转路由并携带param参数, to的字符串写法 -->
+        <!-- <router-link :to="`/home/message/detail/${m.id}/${m.title}`">
           {{ m.title }}
         </router-link> -->
 
-        <!-- 跳转路由并携带query参数， to的对象写法 -->
+        <!-- 跳转路由并携带param参数， to的对象写法, 只能用name,不能用path -->
         <router-link
           :to="{
-            path: '/home/message/detail',
-            query: { id: m.id, title: m.title },
+            name: 'xiangqing',
+            params: { id: m.id, title: m.title },
           }"
         >
           {{ m.title }}
         </router-link>
+        <button @click="pushShow(m)">push查看</button>
+        <button @click="replaceShow(m)">replace查看</button>
       </li>
     </ul>
     <router-view></router-view>
@@ -33,6 +35,21 @@ export default {
         { id: '003', title: '消息003' },
       ],
     }
+  },
+  methods: {
+    pushShow(m) {
+      //   console.log(this.$router)
+      this.$router.push({
+        name: 'xiangqing',
+        params: { id: m.id, title: m.title },
+      })
+    },
+    replaceShow(m) {
+      this.$router.replace({
+        name: 'xiangqing',
+        params: { id: m.id, title: m.title },
+      })
+    },
   },
 }
 </script>
